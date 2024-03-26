@@ -1,0 +1,311 @@
+:root{ /* Pseudo clase, no existe en el codigo como tal */
+    --blanco: #ffffff; /* Propiedades customizadas, o variables de css:  --  */
+    --oscuro: #212121;
+    --primario: #FFC107;
+    --secundario: #0097A7;
+    --gris: #757575;
+    --grisClaro: #DEF9F3;
+}
+
+/* Globales */
+html{
+    font-size: 62.5%;
+    box-sizing: border-box; /* apply a natural box layout model to all elements, but allowing components to change */
+    scroll-snap-type: y mandatory; /*Efecto de scroll de arriba hacia abajo, mandatory: */
+}
+
+/* Scroll snap */
+.servicios
+,.navegacion-principal
+, .formulario {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+
+/* El * selecciona todos los elementos, la "," se aplica cuando se van a compartir las mismas propiedades.*/
+/*el after y before son pseudoclases, se aplican antes y despues.*/
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body{
+    font-size: 16px; /* 1rem = 10px */
+    font-family: "Krub", sans-serif; /* 700 y 400 en el font de acuerdo a la referenciada.*/
+    background-image: linear-gradient(to top, var(--grisClaro) 0%, var(--blanco) 100%); /* propiedad para poder agregar un color de fondo a la pagina, con linear gradient añadimos un degradado que empieza de abajo hacia("to") arriba("top"), poniendo color para inciar y al final con su degradado. */
+}
+/*Lo de arriba permitira un mejor manejo de los rems en todo el documento, adaptable para cualquier densidad de pixeles.*/
+
+.contenedor {
+    max-width: 120rem; /*1200 px como max sino toma el 100% del display*/
+    /*margin: 0 auto 0 auto;*/ /*top,right,bottom,left*/
+    margin: 0 auto; /* top,bottom,  left,right */
+}
+ 
+.sombra {
+    /*-webkit-box-shadow: 0px 5px 10px 0px rgba(107,107,107,0.34);/* - sufijo para propiedad para navegador chrome */
+    /*-moz-box-shadow: 0px 5px 10px 0px rgba(107,107,107,0.34); /* -sufijo para propiedad para navegador firefox. */
+    box-shadow: 0px 5px 10px 0px rgba(107,107,107,0.34); /* Generado con la herramienta de cssmatic. */
+    background-color: var(--blanco);
+    padding: 2rem; /* Espacio en todas las direciones. */
+    border-radius: 2rem;
+}
+
+/* Boton reutilizable */
+.boton {
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase; 
+    font-weight: bold;
+    border-radius: .5rem;
+    width: 90%; /*tome el porcentaje cuando la pantalla se achique*/
+    text-align: center;
+    border: none;
+}
+
+@media (min-width: 768px) {
+    .boton{
+      width: auto; /*resetea el with cuando la minima resolucion sea 768*/
+    }
+}
+  
+.boton:hover{
+    cursor: pointer; /* Añade el cursor cuando al boton se le elimina por el css*/
+}
+
+/* Tipografia. */
+h1 {
+    font-size: 3.8rem;
+}
+
+h2 {
+    font-size: 2.8rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+}
+
+h1,h2,h3 {
+    text-align: center;
+}
+
+/* Titulos */
+.titulo span{
+    font-size: 2rem;
+}
+
+/*span{
+    color: green !important;
+}con el important ignora todos los demas selectores especificos y le da mas prioriodad que a los demas.  */
+
+/* Utiidades */
+.w-sm-100 {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+  .w-sm-100 {
+    width: auto;
+  }
+}
+
+.flex {
+    display: flex;
+}
+
+.alinear-derecha {
+    justify-content: flex-end;
+}
+
+/* Navegacion principal */
+/*Utility class "una clase con una sola propiedad,"*/
+.nav-bg{
+    background-color: var(--secundario);
+}
+
+.navegacion-principal{
+    display: flex; /*Habilitamos en el padre de los elementos que queremos tener flexbox.*/
+    flex-direction: column;
+    align-items: center; /*alinear cuando sea en columnas*/
+}
+
+/*480 para telefono*/
+/*768 para tablet*/
+/*1140 y 1400 para laptops*/
+@media (min-width: 768px)  {
+    .navegacion-principal{
+        flex-direction: row;
+        justify-content: space-between; /*Reparte el mismo espacio entre los elementos, cuando sea en .*/
+   }
+}
+
+/*Modulos*/
+.navegacion-principal a{
+    color: var(--blanco);
+    padding: 1rem; /*incrementa hacia dentro el contenido en todas la direcciones en 1 rem.*/
+    text-decoration: none; /*quita el subrayado del link.*/
+    font-size: 2rem;
+    font-weight: 700; /*700 0 400 de acuerdo a las referenciadas.*/
+}
+
+.navegacion-principal a:hover{
+    background-color: var(--primario);
+    color: var(--oscuro);
+}
+
+
+/* Hero */
+.hero {
+    background-image: url(../img/hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+    /*padding: 20px;*/
+    position: relative; /*Siempre debe tener posicion relativa si es el padre*/
+    margin-bottom: 2rem;
+}
+
+.contenido-hero{
+    position: absolute; /*Hijo debe de tener posicion absluta*/
+    /*background-color: rgba(0,0,0,.5); */ /*Forma anterior para poner transparencia a un contenido, como una imagen.*/
+    background-color: rgb(0 0 0 / 50%); /* Forma nueva de rgb, porcentaje de transpararencia. */
+    /*top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; Coordenadas */
+    width: 100%; /*Tome el % dado del contenido*/
+    height: 100%;
+
+    display: flex; /* display para posicionar a los hijos por medio del padre */
+    flex-direction: column; /*Contenido en columnas*/
+    align-items: center; /*Alineacion center en columnas*/
+    justify-content: center; /*Centrar verticalmente*/
+}
+
+.contenido-hero h2,
+.contenido-hero p {
+    color: var(--blanco);
+}
+
+.contenido-hero .ubicacion {
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Servicios */
+
+/* Asigna display grid en columns cuando el minimo de la pantalla sea 768px */
+@media (min-width: 768px) {
+    .servicios{
+        display: grid;
+        /*grid-template-columns: 33.3% 33.3% 33.3%; 
+        grid-template-columns: 1fr 1fr 1fr; */
+        grid-template-columns: repeat(3,1fr); /* especifica las columns: por px o %, o por fr(divide el contenido total en fracciones), repeat(asigna el numero de repeticiones para el espacio si es el mismo)*/
+        /*grid-template-rows: 200px 800px; /* especifica las rows: por px o % */
+        /*grid: 200px 800px / 300px 300px; /* rows / columns */
+        column-gap: 1rem; /*Separacion entre las columnas.*/
+    } 
+}
+
+/* Servicio */
+.servicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.servicio h3{
+    color: var(--secundario);
+    font-weight: normal;
+}
+
+.servicio p{
+    line-height: 2; /*Interlineado*/
+    text-align: center;
+}
+
+/* Iconos */
+.servicio .iconos{
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--primario);
+    border-radius: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* End Servicios */
+
+/* Formulario */
+.formulario {
+    background-color: var(--gris);
+    width: min( 60rem, 100%); /* Utiliza el valor mas pequeño, */
+    margin: 0 auto; /*Utilzar cuando sea un elemento de tipo block. y no se tenga acceso a justify content*/
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.formulario fieldset {
+    border: none;
+}
+
+.formulario legend {
+    color: var(--primario);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .contenedor-campos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /*grid-template-rows: auto auto 20rem;*/
+        column-gap: 1rem;
+    }
+
+    .campo:nth-child(3)
+    , .campo:nth-child(4) { /* Selecciona el 3 hijo igual, de la clase campo. */
+        grid-column: 1 / 3; /* que el 3er hijo vaya de la columna 1 a la 3 */
+        /*grid-row: 3 / 4; posiciona en la row que desees del grid */
+    }
+}
+
+.campo {
+    margin-bottom: 1rem;
+}
+
+.campo label {
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block;
+}
+
+.campo textarea {
+    height: 20rem;
+}
+
+/*.campo input[type="text"] {
+
+}  class con selector por type  */
+
+.input-text{
+    width: 100%;
+    border: none;
+    padding: 1.5rem;
+    border-radius: .5rem;
+}
+
+
+/* footer*/
+.footer {
+    text-align: center;
+}
